@@ -4,13 +4,17 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 )
 
-const storage = "../../files/"
+const storage = "./files/"
 
 func Snap(file string) {
-	log.Printf("started with %q", file)
-	copyFile(storage+file, storage+"snapshots/"+file+".snap")
+	for {
+		time.Sleep(10 * time.Second)
+		log.Printf("snapped %q", file)
+		copyFile(storage+file, storage+"snapshots/"+file+".snap")
+	}
 }
 
 func copyFile(src, dst string) {
